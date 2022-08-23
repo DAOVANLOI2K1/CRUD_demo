@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -32,14 +33,14 @@ public class Department extends CommonEntity {
     private Constants.TYPE type;
 
     @Column(name = "created_date")
-    @Temporal(TemporalType.DATE)
-    private Date createdDate;
+//    @Temporal(TemporalType.DATE)
+    private LocalDateTime createdDate;
 
     @Override
     public void prePersist(){
         super.prePersist();
         if(this.createdDate == null) {
-            this.createdDate = new Date();
+            this.createdDate = LocalDateTime.now();
         }
     }
 }
